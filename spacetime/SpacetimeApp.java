@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -108,6 +109,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
   Scenario sc;
   double t=0;
   double dt=0.1;
+  int modKey=Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
   boolean shiftPressed=false;
   HelpFrame helpFrame = new HelpFrame(this);
@@ -217,13 +219,13 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     
     //items for menu FILE
     menuItemRead = makeMenuItem("load", "read", bundle.getString("menuItemRead.hint"), bundle.getString("menuItemRead"));
-    menuItemRead.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+    menuItemRead.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, modKey));
     menuItemSave = makeMenuItem("save", "save", bundle.getString("menuItemSave.hint"), bundle.getString("menuItemSave"));
-    menuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+    menuItemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, modKey));
     menuItemNew = makeMenuItem("new", "new", bundle.getString("menuItemNew.hint"), bundle.getString("menuItemNew"));
-    menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+    menuItemNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, modKey));
     menuItemQuit = makeMenuItem("", "quit", bundle.getString("menuItemQuit.hint"), bundle.getString("menuItemQuit"));
-    menuItemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+    menuItemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, modKey));
 
     menuFile.add(menuItemNew);
     menuFile.add(menuItemRead);
@@ -233,9 +235,9 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     
     //items for menu EDIT
     menuItemUndo = makeMenuItem("undo", "undo", bundle.getString("menuItemUndo.hint"), bundle.getString("menuItemUndo"));
-    menuItemUndo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+    menuItemUndo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, modKey));
     menuItemRedo = makeMenuItem("redo", "redo", bundle.getString("menuItemRestore.hint"), bundle.getString("menuItemRestore"));
-    menuItemRedo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+    menuItemRedo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, modKey));
     
     menuItemUndo.setEnabled(false);
     menuItemRedo.setEnabled(false);
@@ -254,7 +256,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
        
     //items for menu Help
     menuItemHelp = makeMenuItem("help", "help", bundle.getString("menuItemHelp.hint"), bundle.getString("menuItemHelp"));
-    menuItemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+    menuItemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, modKey));
     
     menuItemAbout = makeMenuItem("", "about", bundle.getString("menuItemAbout.hint"), bundle.getString("menuItemAbout"));
 
