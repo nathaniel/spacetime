@@ -245,9 +245,9 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     
     //items for menu ZOOM
     menuItemZoomIn = makeMenuItem("zoomin", "zoom in", bundle.getString("menuItemZoomIn.hint"), bundle.getString("menuItemZoomIn"));
-    menuItemZoomIn.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
+    menuItemZoomIn.setAccelerator(KeyStroke.getKeyStroke('+'));
     menuItemZoomOut = makeMenuItem("zoomout", "zoom out", bundle.getString("menuItemZoomOut.hint"), bundle.getString("menuItemZoomOut"));
-    menuItemZoomOut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
+    menuItemZoomOut.setAccelerator(KeyStroke.getKeyStroke('-'));
     
     menuZoom.add(menuItemZoomIn);
     menuZoom.add(menuItemZoomOut);
