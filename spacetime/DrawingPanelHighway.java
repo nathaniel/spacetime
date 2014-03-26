@@ -339,7 +339,7 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
   
   public void removeObject(STObject d){
     Iterator itE = app.sc.events.iterator();
-    LinkedList eventsToRemove = new LinkedList();
+    LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
     while(itE.hasNext()){
       STEvent ev=(STEvent)itE.next();
       if(ev.isPlacedAtWorldline()&&(ev.d).equals(d)) eventsToRemove.add(ev);
@@ -366,7 +366,7 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
     
     //we REMOVE the events on a worldline of a dragged object
     Iterator itE = app.sc.events.iterator();
-    LinkedList eventsToRemove = new LinkedList();
+    LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
     while(itE.hasNext()){
       STEvent ev=(STEvent)itE.next();
       if(!ev.getClass().toString().endsWith("STBetaChangeEvent")){

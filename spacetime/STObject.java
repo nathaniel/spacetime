@@ -10,7 +10,7 @@ public abstract class STObject {
   DrawingPanelDiagram pnlDiagram;
   Scenario sc;
    
-  LinkedList worldlineData = new LinkedList();
+  LinkedList<WorldlineRecord> worldlineData = new LinkedList<WorldlineRecord>();
   
   final Color HIGHLIGHTED_COLOR=new Color(132,24,168);
   final Color USUAL_COLOR=Color.black;
@@ -217,7 +217,7 @@ public abstract class STObject {
       double tol=1e-6;
       
       //remove all worldline data with tp <= current tp
-      LinkedList wrtoremove = new LinkedList();
+      LinkedList<WorldlineRecord> wrtoremove = new LinkedList<WorldlineRecord>();
       for(int i=0; i<worldlineData.size(); i++){
         WorldlineRecord wr = (WorldlineRecord)worldlineData.get(i);
         if(wr.getTp()<=tp+tol) wrtoremove.add(wr);
@@ -227,7 +227,7 @@ public abstract class STObject {
       
       //remove all asociated events with tp <= current tp
       String slabel="", snote="";
-      LinkedList eventsToRemove = new LinkedList();
+      LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount(); i++){
         STEvent ev = sc.getEvent(i);
         boolean isBetaChangeEventToRemove = ev.getClass().toString().endsWith("STBetaChangeEvent")&&ev.d.equals(this)&&(ev.getTp()<=tp+tol);
@@ -292,7 +292,7 @@ public abstract class STObject {
       double tol=1e-6;
       
       //remove all worldline data with tp >= current tp
-      LinkedList wrtoremove = new LinkedList();
+      LinkedList<WorldlineRecord> wrtoremove = new LinkedList<WorldlineRecord>();
       for(int i=0; i<worldlineData.size(); i++){
         WorldlineRecord wr = (WorldlineRecord)worldlineData.get(i);
         if(wr.getTp()>=tp-tol) wrtoremove.add(wr);
@@ -301,7 +301,7 @@ public abstract class STObject {
       
       //remove all associated events with tp >= current tp
       String slabel="", snote="";
-      LinkedList eventsToRemove = new LinkedList();
+      LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount(); i++){
         STEvent ev = sc.getEvent(i);
         boolean isBetaChangeEventToRemove = ev.getClass().toString().endsWith("STBetaChangeEvent")&&ev.d.equals(this)&&(ev.getTp()>=tp-tol);
@@ -406,7 +406,7 @@ public abstract class STObject {
     worldlineData.add(wr);
     
     //here we remove associated events of beta changes
-    LinkedList eventsToRemove = new LinkedList();
+    LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
     for(int i = 0; i<sc.getEventsCount();i++){
       STEvent ev = sc.getEvent(i);
       if(ev.getClass().toString().endsWith("STBetaChangeEvent")&& ev.d.equals(this)) {
@@ -458,7 +458,7 @@ public abstract class STObject {
     
     if(isAt){//tp is coincident with time of some of the worldline records
       //first remove all the subsequent records
-      LinkedList wrremove = new LinkedList();
+      LinkedList<WorldlineRecord> wrremove = new LinkedList<WorldlineRecord>();
       for(int i = iAt+1; i<worldlineData.size(); i++){
         wrremove.add(worldlineData.get(i));
       }
@@ -469,7 +469,7 @@ public abstract class STObject {
       
       //now remove associated events and other events with tp >= current tp
       String snote="";
-      LinkedList eventsToRemove = new LinkedList();
+      LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount();i++){
         STEvent ev = sc.getEvent(i);
         boolean isBetaChangeEventToRemove = ev.getClass().toString().endsWith("STBetaChangeEvent")&&ev.d.equals(this)&&(ev.getTp()>wr.getTp()-tol);
@@ -503,7 +503,7 @@ public abstract class STObject {
       
       //remove all events with tp >= than current tp
       String snote="";
-      LinkedList eventsToRemove = new LinkedList();
+      LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount();i++){
         STEvent ev = sc.getEvent(i);
         boolean isOtherToRemove = !ev.getClass().toString().endsWith("STBetaChangeEvent")&& ((ev.isPlacedAtWorldline && ev.d.equals(this)) || (ev.isFixedAtIntersection && (ev.d1.equals(this) || ev.d2.equals(this))))&&(ev.getTp()>wr.getTp()-tol);
@@ -532,7 +532,7 @@ public abstract class STObject {
       
       
       //here we remove associated events of beta changes
-      LinkedList eventsToRemove = new LinkedList();
+      LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount();i++){
         STEvent ev = sc.getEvent(i);
         if(ev.getClass().toString().endsWith("STBetaChangeEvent")&& ev.d.equals(this) ) {
@@ -550,7 +550,7 @@ public abstract class STObject {
       sc.addEvent(ev);
       
       //now remove all events with tp >= current tp
-      eventsToRemove = new LinkedList();
+      eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount();i++){
         ev = sc.getEvent(i);
         boolean isOtherToRemove = !ev.getClass().toString().endsWith("STBetaChangeEvent")&& ((ev.isPlacedAtWorldline && ev.d.equals(this)) || (ev.isFixedAtIntersection && (ev.d1.equals(this) || ev.d2.equals(this))))&&(ev.getTp()>wr.getTp()-tol);
@@ -563,7 +563,7 @@ public abstract class STObject {
     }
     else{//tpFirst < tp < tpLast
       //first remove worldline records with times >= tp
-      LinkedList wrremove = new LinkedList();
+      LinkedList<WorldlineRecord> wrremove = new LinkedList<WorldlineRecord>();
       for(int i = 0; i<worldlineData.size();i++){
         WorldlineRecord wrtemp = (WorldlineRecord)worldlineData.get(i);
         if(tp<wrtemp.getTp()) {
@@ -575,7 +575,7 @@ public abstract class STObject {
       
       //now remove associated events and other events with tp >= current tp
       String snote="";
-      LinkedList eventsToRemove = new LinkedList();
+      LinkedList<STEvent> eventsToRemove = new LinkedList<STEvent>();
       for(int i = 0; i<sc.getEventsCount();i++){
         STEvent ev = sc.getEvent(i);
         boolean isBetaChangeEventToRemove = ev.getClass().toString().endsWith("STBetaChangeEvent")&&ev.d.equals(this)&&(ev.getTp()>=tp-tol);
@@ -614,7 +614,7 @@ public abstract class STObject {
   }
   
   public void relabelAllBetaChangeEvents(){
-    LinkedList eventsToLabel = new LinkedList();
+    LinkedList<STEvent> eventsToLabel = new LinkedList<STEvent>();
     for(int i = 0; i<sc.getEventsCount();i++){
       STEvent ev = sc.getEvent(i);
       if(ev.getClass().toString().endsWith("STBetaChangeEvent") && ev.d.equals(this)) {

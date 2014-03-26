@@ -16,9 +16,10 @@ import java.util.StringTokenizer;
 
 public class Scenario {
   SpacetimeApp app;
-  LinkedList objects = new LinkedList();
-  LinkedList events = new LinkedList();
-  LinkedList decorations = new LinkedList();
+  LinkedList<STObject> objects = new LinkedList<STObject>();
+  LinkedList<STEvent> events = new LinkedList<STEvent>();
+  LinkedList<STDiagramDecoration> decorations
+      = new LinkedList<STDiagramDecoration>();
   double betaRel=0;
   int eventCounter=1;
   int clockCounter=1;

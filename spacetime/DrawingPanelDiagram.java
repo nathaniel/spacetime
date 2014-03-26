@@ -24,13 +24,14 @@ import java.util.LinkedList;
  * 
  */
 public class DrawingPanelDiagram extends DrawingPanel implements MouseWheelListener{
-  LinkedList objectsOver=new LinkedList();
+  LinkedList<STObject> objectsOver=new LinkedList<STObject>();
   public int popupCurX, popupCurY;
   STEvent popupEventOver;
   STObject popupObjectOver;
   STObject d1, d2;//used in creating intersection of worldlines
   boolean choosingSecondObject=false;
-  private LinkedList segments1 = new LinkedList(), segments2 = new LinkedList();
+  private LinkedList<Segment> segments1 = new LinkedList<Segment>(),
+      segments2 = new LinkedList<Segment>();
   boolean isOverDecoration=false;
   STDiagramDecoration decorationOver, popupDecorationOver;
   boolean choosingSecondEvent=false;

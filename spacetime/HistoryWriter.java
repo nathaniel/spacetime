@@ -5,14 +5,14 @@ import java.util.Properties;
 
 public class HistoryWriter implements Runnable{
 
-  LinkedList history;//this will contain Properties objects
+  LinkedList<Properties> history;//this will contain Properties objects
   Scenario sc;
   Thread historyThread;  
   int currentIndex;
 
   public HistoryWriter(Scenario sc){
     this.sc=sc;
-    history = new LinkedList();
+    history = new LinkedList<Properties>();
     history.add(sc.getProperties());
     currentIndex = history.size()-1;
     sc.app.menuItemUndo.setEnabled(false);
@@ -79,7 +79,7 @@ public class HistoryWriter implements Runnable{
   public void continueWriting(){
     if(historyThread==null){
       //first remove all Properties from the currentIndex+1 to the end of list
-      LinkedList propToRemove=new LinkedList();
+      LinkedList<Properties> propToRemove=new LinkedList<Properties>();
       for(int i = currentIndex+1; i<history.size(); i++){
         propToRemove.add(history.get(i));
       }
