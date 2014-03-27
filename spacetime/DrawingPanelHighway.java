@@ -42,7 +42,7 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
   public DrawingPanelHighway(SpacetimeApp app){
     super(app);
     addMouseWheelListener(this);
-    prepareNiceBetaVlaues();
+    prepareNiceBetaValues();
   }
   
   
@@ -244,7 +244,7 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
     }
   }
   
-  public void prepareNiceBetaVlaues(){
+  public void prepareNiceBetaValues(){
     //  prepare nice beta values
     int iMax=(nbvlength-3)/2+1;
     for(int i=0; i<iMax; i++){
