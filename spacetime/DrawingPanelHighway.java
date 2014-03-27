@@ -25,7 +25,7 @@ import javax.swing.BorderFactory;
  */
 public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListener{
    double betaGammaScaleWidth=100;
-   int maxGamma=10;        // limiting value for gamma and beta (speed) 
+   int maxGamma=30;        // limiting value for gamma and beta (speed) 
    double gammaStep=0.1;   // gamma increment when dragging in Highway
    int nbvlength = 2*Math.round((float)((maxGamma-1)/gammaStep))+3;
    double[] niceBetaValue = new double[nbvlength];

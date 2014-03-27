@@ -391,8 +391,10 @@ public abstract class STObject {
       else betap=-1;
     }
     else{
-      double betaMin=sc.app.pnlHighway.niceBetaValue[1];
-      double betaMax=sc.app.pnlHighway.niceBetaValue[sc.app.pnlHighway.niceBetaValue.length-2];
+      // double betaMin=sc.app.pnlHighway.niceBetaValue[1];
+      // double betaMax=sc.app.pnlHighway.niceBetaValue[sc.app.pnlHighway.niceBetaValue.length-2];
+      double betaMax=0.9999;
+      double betaMin=-betaMax;
       if(betap>betaMax) betap=betaMax;
       else if(betap<betaMin) betap=betaMin;
     }
