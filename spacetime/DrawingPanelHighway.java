@@ -273,8 +273,12 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
     else{
       for(int i=0; i<nbvlength-1; i++){
         if((niceBetaValue[i]<=betap)&&(betap<niceBetaValue[i+1])){
-          double b1=betap-niceBetaValue[i];
-          double b2=niceBetaValue[i+1]-betap;
+          // Key off gamma values, not beta, since gamma is more linear on screen
+          double gamma1=Math.sqrt(1./(1.-niceBetaValue[i]*niceBetaValue[i]));
+          double gamma2=Math.sqrt(1./(1.-niceBetaValue[i+1]*niceBetaValue[i+1]));
+          double gamma=Math.sqrt(1./(1.-betap*betap));
+          double b1=Math.abs(gamma-gamma1);
+          double b2=Math.abs(gamma2-gamma);
           if(b1<b2) newBetap = niceBetaValue[i];
           else newBetap = niceBetaValue[i+1];
         }
