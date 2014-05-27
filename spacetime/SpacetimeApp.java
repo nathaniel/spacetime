@@ -71,7 +71,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
   JMenu menuTransform, menuCreate;
   JMenuItem menuItemClock, menuItemFlash;
   JMenuItem menuItemTransformUp, menuItemTransformDown, menuItemOriginalFrame;
-  JMenuItem menuItemJump, menuItemDelete, menuItemProgram, menuItemSetBirth, menuItemSetTermination, menuItemCancelBirth, menuItemCancelTermination;
+  JMenuItem menuItemJump, menuItemFollow, menuItemDelete, menuItemProgram, menuItemSetBirth, menuItemSetTermination, menuItemCancelBirth, menuItemCancelTermination;
   JPopupMenu popupOverDiagram, popupOverEvent;
   JMenu menuConstructD, menuConstructE, menuTime;
   JMenuItem menuItemDecorationDelete;
@@ -92,6 +92,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
   //Locale defaultLocale = new Locale("sk", "SK");
   Locale enLocale = new Locale("en", "US");
   ResourceBundle bundle = ResourceBundle.getBundle("resources/i18n/SpacetimeBundle", defaultLocale);
+  STObject objToFollow = null;
   
   //Create a file chooser
   JFileChooser fileChooser;
@@ -368,6 +369,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     popupOverObject = new JPopupMenu();
     pnlHighway.add(popupOverObject);
     menuItemJump = makeMenuItem("", "jump", bundle.getString("menuItemJump.hint"), bundle.getString("menuItemJump"));
+    menuItemFollow = makeMenuItem("", "follow", bundle.getString("menuItemFollow.hint"), bundle.getString("menuItemFollow"));
     menuItemProgram = makeMenuItem("", "program", bundle.getString("menuItemProgram.hint"), bundle.getString("menuItemProgram"));
     menuItemDelete = makeMenuItem("", "delete object", bundle.getString("menuItemDelete.hint"), bundle.getString("menuItemDelete"));
     menuItemSetBirth = makeMenuItem("", "set birth", bundle.getString("menuItemSetBirth.hint"), bundle.getString("menuItemSetBirth"));
@@ -379,6 +381,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     menuItemCancelTermination.setVisible(false);
     
     popupOverObject.add(menuItemJump);
+    popupOverObject.add(menuItemFollow);
     popupOverObject.add(menuItemProgram);
     popupOverObject.add(menuItemSetBirth);
     popupOverObject.add(menuItemCancelBirth);
@@ -755,7 +758,16 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
       objectTable.updateTable();
     }
     else if(e.getActionCommand().equals("jump")){
+      objToFollow = null;
       pnlHighway.jumpToObject(pnlHighway.popupObjectOver);
+      repaint();
+      historyWriter.continueWriting();
+      objectTable.updateTable();
+      eventTable.updateTable();
+    }
+    else if(e.getActionCommand().equals("follow")){
+      objToFollow = pnlHighway.popupObjectOver;
+      pnlHighway.jumpToObject(objToFollow);
       repaint();
       historyWriter.continueWriting();
       objectTable.updateTable();
@@ -775,6 +787,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
       eventTable.updateTable();
     }
     else if(e.getActionCommand().equals("delete object")){
+      if(pnlHighway.popupObjectOver==objToFollow) objToFollow=null;
       pnlHighway.removeObject(pnlHighway.popupObjectOver);
       repaint();
       historyWriter.continueWriting();
@@ -950,6 +963,10 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     }
     else if (key == KeyEvent.VK_UP) {  // shift time one step forward
       if(!shiftPressed){
+        stepForward();
+	if(objToFollow != null) {
+	    pnlHighway.jumpToObject(objToFollow);
+	}
         repaint();
         historyWriter.continueWriting();
       }
@@ -967,6 +984,9 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     else if (key == KeyEvent.VK_DOWN) {  // shift time one step forward
       if(!shiftPressed){
         stepBack();
+	if(objToFollow != null) {
+	    pnlHighway.jumpToObject(objToFollow);
+	}
         repaint();
         historyWriter.continueWriting();
       }

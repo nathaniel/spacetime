@@ -327,7 +327,7 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
 
   public void jumpToObject(STObject d){
     double eps = 1e-6; 
-    double betap = d.getBetaP(app.t+eps);
+    double betap = d.getBetaP(app.t);
     // Get current time as measured in frame moving with object
     double tRead = d.getSynchronizedTimeReading(app.t);
     // Velocity transform formula: object's velocity as measured in original frame
@@ -445,8 +445,14 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
             popupObjectOver=d;
             //we do not want to allow jumping to a photon
             String cl = d.getClass().toString();
-            if(cl.endsWith("STFlash")) app.menuItemJump.setEnabled(false);
-            else app.menuItemJump.setEnabled(true);
+            if(cl.endsWith("STFlash")){
+		app.menuItemJump.setEnabled(false);
+		app.menuItemFollow.setEnabled(false);
+	    }
+            else{
+		app.menuItemJump.setEnabled(true);
+		app.menuItemFollow.setEnabled(true);
+	    }
             break;
           }
         }

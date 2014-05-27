@@ -378,6 +378,7 @@ public class Scenario {
     clockCounter=1;
     flashCounter=1;
     decorationCounter=1;
+    app.objToFollow=null;
     betaRel = parseDouble(prop.getProperty("betaRel"));
     app.t = parseDouble(prop.getProperty("t"));
     clockCounter = parseInt(prop.getProperty("clockCounter"));
@@ -585,6 +586,7 @@ public class Scenario {
     objects.removeAll(objects);
     decorations.removeAll(decorations);
     app.t=0;
+    app.objToFollow=null;
     app.pnlDiagram.cY=app.t;
     app.textArea.setText("You can type your comments for the current scenario here . . .");
     app.pnlHighway.setPreferredMinMaxXY(-5, 5, -1.25, 1.25);
