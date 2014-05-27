@@ -768,6 +768,15 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     else if(e.getActionCommand().equals("follow")){
       objToFollow = pnlHighway.popupObjectOver;
       pnlHighway.jumpToObject(objToFollow);
+      double xObj = objToFollow.getXpAtTp(this.t);
+      double x1Old = pnlHighway.sx1;
+      double x2Old = pnlHighway.sx2;
+      double x2New = xObj + 0.5*(x2Old-x1Old);
+      double x1New = xObj - 0.5*(x2Old-x1Old);
+      pnlDiagram.sx1=x1New;
+      pnlDiagram.sx2=x2New;
+      pnlHighway.sx1=x1New;
+      pnlHighway.sx2=x2New;
       repaint();
       historyWriter.continueWriting();
       objectTable.updateTable();
@@ -966,6 +975,15 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
         stepForward();
 	if(objToFollow != null) {
 	    pnlHighway.jumpToObject(objToFollow);
+	    double xObj = objToFollow.getXpAtTp(this.t);
+	    double x1Old = pnlHighway.sx1;
+	    double x2Old = pnlHighway.sx2;
+	    double x2New = xObj + 0.5*(x2Old-x1Old);
+	    double x1New = xObj - 0.5*(x2Old-x1Old);
+	    pnlDiagram.sx1=x1New;
+	    pnlDiagram.sx2=x2New;
+	    pnlHighway.sx1=x1New;
+	    pnlHighway.sx2=x2New;
 	}
         repaint();
         historyWriter.continueWriting();
@@ -986,6 +1004,15 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
         stepBack();
 	if(objToFollow != null) {
 	    pnlHighway.jumpToObject(objToFollow);
+	    double xObj = objToFollow.getXpAtTp(this.t);
+	    double x1Old = pnlHighway.sx1;
+	    double x2Old = pnlHighway.sx2;
+	    double x2New = xObj + 0.5*(x2Old-x1Old);
+	    double x1New = xObj - 0.5*(x2Old-x1Old);
+	    pnlDiagram.sx1=x1New;
+	    pnlDiagram.sx2=x2New;
+	    pnlHighway.sx1=x1New;
+	    pnlHighway.sx2=x2New;
 	}
         repaint();
         historyWriter.continueWriting();
