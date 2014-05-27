@@ -139,7 +139,8 @@ public abstract class STObject {
       tp0=getSynchronizedTimeReading(tp);
     }
     else{//tp>tFirst
-      tp0=getSynchronizedTimeReading(tpFirst);/*gammapFirst*(tpFirst-betapFirst*xpFirst)*///this is the reading of the clock at the envent of first beta change
+      // Determine the reading of the clock at the event of first beta change:
+      tp0=getSynchronizedTimeReading(tpFirst);
       WorldlineRecord wr1 = wrFirst;
       WorldlineRecord wr2;
       boolean finishedBeforeLast=false;
@@ -177,6 +178,8 @@ public abstract class STObject {
   }
   
   public double getSynchronizedTimeReading(double tp){
+    // Returns time of object's current event, as reported in frame at object's velocity
+    //  and with same origin event as original frame
     double xp = getXpAtTp(tp);
     double betap = getBetaP(tp);
     return 1/Math.sqrt(1-betap*betap)*(tp-betap*xp);

@@ -328,9 +328,10 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
   public void jumpToObject(STObject d){
     double eps = 1e-6; 
     double betap = d.getBetaP(app.t+eps);
+    // Get current time as measured in frame moving with object
     double tRead = d.getSynchronizedTimeReading(app.t);
+    // Velocity transform formula: object's velocity as measured in original frame
     double newBetaRel = (app.sc.getBetaRel()+betap)/(1+app.sc.getBetaRel()*betap);
-    
     
     app.sc.setBetaRel(newBetaRel);
     app.t=tRead;
@@ -562,12 +563,14 @@ public class DrawingPanelHighway extends DrawingPanel implements MouseWheelListe
     
     if (notches < 0) {//scroll up
       double deltaBetap=0.05;
+      // Velocity transform formula:
       double newBetaRel = (app.sc.getBetaRel()+deltaBetap)/(1+app.sc.getBetaRel()*deltaBetap);
       app.sc.setBetaRel(newBetaRel);
       app.printTimeInfo();
     } 
     else {//scroll down
       double deltaBetap=-0.05;
+      // Velocity transform formula:
       double newBetaRel = (app.sc.getBetaRel()+deltaBetap)/(1+app.sc.getBetaRel()*deltaBetap);
       app.sc.setBetaRel(newBetaRel);
       app.printTimeInfo();

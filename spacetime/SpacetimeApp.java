@@ -107,7 +107,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
   DecimalFormat format0, format0en;
   GridBagConstraints c;
   Scenario sc;
-  double t=0;
+  double t=0;  // Time measured in the current ref frame. No absolute time!
   double dt=0.1;
   int modKey=Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
@@ -719,7 +719,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     }
     else if(e.getActionCommand().equals("transform up")){
       double deltaBetap=0.1;
-      double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);
+      double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);  // velocity transform formula
       sc.setBetaRel(newBetaRel);
       repaint();
       historyWriter.continueWriting();
@@ -728,7 +728,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     }
     else if(e.getActionCommand().equals("transform down")){
       double deltaBetap=-0.1;
-      double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);
+      double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);  // velocity transform formula
       sc.setBetaRel(newBetaRel);
       repaint();
       historyWriter.continueWriting();
@@ -950,13 +950,12 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     }
     else if (key == KeyEvent.VK_UP) {  // shift time one step forward
       if(!shiftPressed){
-        stepForward();
         repaint();
         historyWriter.continueWriting();
       }
       else {
         double deltaBetap=0.1;
-        double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);
+        double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);  // velocity transform formula
         sc.setBetaRel(newBetaRel);
         repaint();
         historyWriter.continueWriting();
@@ -973,7 +972,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
       }
       else {
         double deltaBetap=-0.1;
-        double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);
+        double newBetaRel = (sc.getBetaRel()+deltaBetap)/(1+sc.getBetaRel()*deltaBetap);  // velocity transform formula
         sc.setBetaRel(newBetaRel);
         repaint();
         historyWriter.continueWriting();

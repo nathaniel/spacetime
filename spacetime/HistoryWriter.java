@@ -3,6 +3,9 @@ package spacetime;
 import java.util.LinkedList;
 import java.util.Properties;
 
+/**
+ * This class takes care of the Undo/Redo history.
+ */
 public class HistoryWriter implements Runnable{
 
   LinkedList<Properties> history;//this will contain Properties objects

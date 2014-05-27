@@ -15,12 +15,16 @@ import java.util.StringTokenizer;
 
 
 public class Scenario {
+    /**
+     * A scenario is a collection of clocks, flashes, and events, and
+     *  the velocity of the reference frame currently in use (relative to original).
+     */
   SpacetimeApp app;
   LinkedList<STObject> objects = new LinkedList<STObject>();
   LinkedList<STEvent> events = new LinkedList<STEvent>();
   LinkedList<STDiagramDecoration> decorations
       = new LinkedList<STDiagramDecoration>();
-  double betaRel=0;
+  double betaRel=0;  // Velocity of ref frame relative to original frame
   int eventCounter=1;
   int clockCounter=1;
   int flashCounter=1;
