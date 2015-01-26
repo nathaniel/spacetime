@@ -950,6 +950,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
     }
     else if (key == KeyEvent.VK_UP) {  // shift time one step forward
       if(!shiftPressed){
+	stepForward();
         repaint();
         historyWriter.continueWriting();
       }
