@@ -30,4 +30,6 @@ square roots and enables them to concentrate on the topic at hand.
 Instructions
 ------------
 
+To build, run the build.sh script.
+
 For full documentation, please see the html help files in the resources/html directory.
