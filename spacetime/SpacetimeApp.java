@@ -924,7 +924,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
   public void keyPressed(KeyEvent evt){
     int key = evt.getKeyCode();  // keyboard code for the pressed key
     
-    if (key == KeyEvent.VK_LEFT) {  // shift everything to the left
+    if (key == KeyEvent.VK_RIGHT) {  // shift everything to the left
       double x1Old = pnlHighway.sx1;
       double x2Old = pnlHighway.sx2;
       double x2New = x2Old + 0.05*(x2Old-x1Old);
@@ -936,7 +936,7 @@ public class SpacetimeApp extends JFrame implements ActionListener, KeyListener,
       repaint();
       historyWriter.continueWriting();
     }
-    else if (key == KeyEvent.VK_RIGHT) {  // shift everything to the right
+    else if (key == KeyEvent.VK_LEFT) {  // shift everything to the right
       double x1Old = pnlHighway.sx1;
       double x2Old = pnlHighway.sx2;
       double x2New = x2Old - 0.05*(x2Old-x1Old);
