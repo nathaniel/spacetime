@@ -32,4 +32,8 @@ Instructions
 
 To build, run the build.sh script.
 
+Or download the ready-built Spacetime.jar file. Requires Java to run.
+
+Separately download the files in folder **scenarios** to load & run pre-build scenarios.
+
 For full documentation, please see the html help files in the resources/html directory.
